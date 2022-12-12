@@ -1,0 +1,9 @@
+export const Black = '#000';
+export const GranadaBlack = 'rgba(0, 0, 0, 0.6)';
+export const MidnightBlack = '#4e4e4e';
+export const Gray = '#808080';
+export const LightGray = '#E8E8E8';
+export const White = '#fff';
+export const Violet = '#8b00ff';
+export const lightViolet = '#8f59bf';
+export const Orange = '#fcab4f';
