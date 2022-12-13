@@ -2,6 +2,7 @@ import create, { StoreApi, UseBoundStore } from 'zustand';
 
 import { UserStore } from '../types/types';
 import { Diff, Sum } from '../constants/constants';
+import { getCurrentUserFromLS } from '../helpers/functions';
 
 const useUserStore: UseBoundStore<StoreApi<UserStore>> = create((set, get) => ({
   isDarkMode: false,
@@ -18,7 +19,7 @@ const useUserStore: UseBoundStore<StoreApi<UserStore>> = create((set, get) => ({
   setError: (error) => {
     set({ error: error });
   },
-  currentUser: null,
+  currentUser: getCurrentUserFromLS(),
   setUser: (currentUser) => {
     set({ currentUser });
   },

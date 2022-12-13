@@ -10,19 +10,27 @@ import { authApi } from '../../api/auth-api';
 import { getCartItemsCount, getTotalPrice } from '../../helpers/functions';
 import DropDownMenu from '../DropDownMenu';
 import ThemeSwitch from '../Switch';
+import { CurrentUser } from '../../constants/constants';
 import Image from '../../assets/mainLogo.png';
 
 const Header = () => {
 
   const currentUser = useUserStore(state => state.currentUser);
-  const setUser = useUserStore(state => state.setUser);
   const isDarkMode = useUserStore(state => state.isDarkMode);
   const cartItemsCount = currentUser && getCartItemsCount(currentUser.cart);
   const totalPrice = currentUser && getTotalPrice(currentUser.cart);
+  const isMounted = React.useRef<boolean>(false);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      localStorage.setItem(CurrentUser, JSON.stringify(currentUser));
+    }
+    isMounted.current = true;
+  }, [currentUser]);
 
   const logOut = async () => {
     await authApi.logout();
-    setUser(null);
+    localStorage.setItem(CurrentUser, JSON.stringify(null));
   };
 
   return(

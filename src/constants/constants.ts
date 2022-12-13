@@ -23,3 +23,4 @@ export const stripeBaseUrl = import.meta.env.VITE_API_STRIPE_SERVER_BASE_URL;
 export const stripePublishableKey = import.meta.env.VITE_API_PUBLISHABLE_KEY;
 export const LabelForSort = 'Sort by';
 export const LabelForFilter = 'Filter by brand';
+export const CurrentUser = 'current user';

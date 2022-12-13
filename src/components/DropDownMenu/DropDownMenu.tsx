@@ -7,19 +7,19 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import ThemeSwitch from '../Switch';
 import { ROUTES } from '../../router/routes';
-import useUserStore from '../../stores/userStore';
 import { getCartItemsCount } from '../../helpers/functions';
 import { User } from '../../types/types';
 import { StyledButton, StyledContent, StyledItem } from './styles';
 import { authApi } from '../../api/auth-api';
+import { CurrentUser } from '../../constants/constants';
 
 const DropDownMenu = ({ currentUser }: { currentUser: User | null }) => {
 
-    const setUser = useUserStore(state => state.setUser);
     const cartItemsCount = currentUser && getCartItemsCount(currentUser.cart);
     const logOut = async () => {
         await authApi.logout();
-        setUser(null);
+        localStorage.setItem(CurrentUser, JSON.stringify(null));
+        window.location.reload();
     };
 
     return (
